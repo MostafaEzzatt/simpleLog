@@ -3,6 +3,7 @@ import schemaTypes from "all:part:@sanity/base/schema-type";
 
 import posts from "./post";
 import tags from "./tags";
+import socialMedia from "./socialMedia";
 
 import pages from "./page";
 import about from "./about";
@@ -16,5 +17,13 @@ export default createSchema({
   name: "default",
   // Then proceed to concatenate our document type
   // to the ones provided by any plugins that are installed
-  types: schemaTypes.concat([posts, tags, pages, about, iconImage, mainImage]),
+  types: schemaTypes.concat([
+    posts,
+    tags,
+    socialMedia,
+    pages,
+    about,
+    iconImage,
+    mainImage,
+  ]),
 });

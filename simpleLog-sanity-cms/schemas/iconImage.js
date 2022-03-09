@@ -8,10 +8,12 @@ export default {
     Rule.custom((image) => {
       if (!image) return true;
       const { dimensions } = decodeAssetId(image.asset._ref);
-      console.log(dimensions);
+
       if (dimensions.width > 50 || dimensions.height > 50) {
         return "Image Must be Smaller Max 50x50";
       }
+
+      return true;
     }),
   fields: [
     {

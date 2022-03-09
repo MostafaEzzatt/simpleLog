@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components{
+    * {
+        font-family: 'IBM Plex Sans', sans-serif;
+    }
+
+    article p {
+        /* @apply mb-5 */
+    }
+
+    article p > a,
+    article blockquote a{
+        @apply text-highlight hover:underline
+    }
+
+    article blockquote{
+        @apply text-medium mt-6 mb-12 border-l-4 border-solid border-highlight pl-4
+    }
+
+}
