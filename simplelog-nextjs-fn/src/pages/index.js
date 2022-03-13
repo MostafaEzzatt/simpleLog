@@ -34,7 +34,7 @@ Home.prototype = {
   posts: ProtoType.array.isRequired,
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const posts = await client.fetch(
     `*[_type == "post"] | order(_createdAt desc)`
   );
@@ -43,7 +43,6 @@ export async function getStaticProps() {
     props: {
       posts,
     },
-    revalidate: 60,
   };
 }
 
