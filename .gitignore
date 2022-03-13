@@ -8,6 +8,11 @@ node_modules
 # testing
 /coverage
 
+# netlify
+.netlify
+.netlify/
+/.netlify/
+
 # next.js
 .next/
 /.next/
@@ -35,3 +40,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# Local Netlify folder
+.netlify
