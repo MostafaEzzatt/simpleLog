@@ -25,7 +25,7 @@ export default {
     {
       name: "body",
       type: "array",
-      title: "body",
+      title: "Body",
       of: [
         {
           type: "block",

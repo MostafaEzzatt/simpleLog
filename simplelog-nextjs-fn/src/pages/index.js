@@ -38,10 +38,12 @@ export async function getStaticProps() {
   const posts = await client.fetch(
     `*[_type == "post"] | order(_createdAt desc)`
   );
+
   return {
     props: {
       posts,
     },
+    revalidate: 60,
   };
 }
 
