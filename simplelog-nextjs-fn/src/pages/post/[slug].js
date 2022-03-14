@@ -1,5 +1,6 @@
 import Image from "next/image";
 import PropTypes from "prop-types";
+import Head from "next/head";
 
 // Components
 import Content from "../../components/post/Content";
@@ -17,67 +18,77 @@ const SinglePost = ({ post }) => {
     return <div className="text-center">This Post Not Exist</div>;
 
   return (
-    <main className="space-y-8 border-b border-solid border-medium pb-4">
-      <article>
-        {post?.mainImage && (
-          <div className="relative mb-6 h-72 w-full">
-            <Image
-              src={imageBuilder(post.mainImage).width(768).url()}
-              alt={post.mainImage.alt}
-              layout="fill"
-              objectFit="cover"
-              className="max-w-full"
-            />
-          </div>
-        )}
-        <time
-          dateTime={formatPostDate(post?._createdAt)}
-          className="mb-2.5 block w-32 whitespace-nowrap text-light sm:hidden"
-        >
-          {formatPostDate(post?._createdAt)}
-        </time>
-        <div className="relative">
-          {post?.iconImage && (
-            <div className="absolute z-0 h-icon w-icon">
+    <>
+      <Head>
+        <title>{post?.title}</title>
+        <meta name="description" content={post?.summary} />
+        <meta name="keywords" content="simple,blog, simpleBlog" />
+        <meta property="og:title" content={post?.title} />
+        <meta name="og:description" content={post?.summary} />
+        <meta name="og:type" content="article" />
+      </Head>
+      <main className="space-y-8 border-b border-solid border-medium pb-4">
+        <article>
+          {post?.mainImage && (
+            <div className="relative mb-6 h-72 w-full">
               <Image
-                src={imageBuilder(post?.iconImage).width(50).url()}
-                alt={post?.iconImage.alt}
-                className="max-w-full"
+                src={imageBuilder(post.mainImage).width(768).url()}
+                alt={post.mainImage.alt}
                 layout="fill"
-                objectFit="contain"
+                objectFit="cover"
+                className="max-w-full"
               />
             </div>
           )}
-          <h2
-            className={`mb-2.5 text-5xl font-bold text-dark ${
-              post?.iconImage && "indent-14"
-            }`}
-          >
-            {post?.title}
-          </h2>
-        </div>
-        <div className="mb-8 flex justify-between">
           <time
             dateTime={formatPostDate(post?._createdAt)}
-            className="hidden w-32 whitespace-nowrap text-light sm:inline-block"
+            className="mb-2.5 block w-32 whitespace-nowrap text-light sm:hidden"
           >
             {formatPostDate(post?._createdAt)}
           </time>
-
-          <div>
-            <span className="w-32 whitespace-nowrap text-light">
-              {getEstimatedReadingTime(post.body)} min read
-            </span>
-            <span className="w-32 whitespace-nowrap text-light"> . </span>
-            <span className="w-32 whitespace-nowrap text-light">
-              213,248 views
-            </span>
+          <div className="relative">
+            {post?.iconImage && (
+              <div className="absolute z-0 h-icon w-icon">
+                <Image
+                  src={imageBuilder(post?.iconImage).width(50).url()}
+                  alt={post?.iconImage.alt}
+                  className="max-w-full"
+                  layout="fill"
+                  objectFit="contain"
+                />
+              </div>
+            )}
+            <h2
+              className={`mb-2.5 text-5xl font-bold text-dark ${
+                post?.iconImage && "indent-14"
+              }`}
+            >
+              {post?.title}
+            </h2>
           </div>
-        </div>
+          <div className="mb-8 flex justify-between">
+            <time
+              dateTime={formatPostDate(post?._createdAt)}
+              className="hidden w-32 whitespace-nowrap text-light sm:inline-block"
+            >
+              {formatPostDate(post?._createdAt)}
+            </time>
 
-        <Content value={post?.body} />
-      </article>
-    </main>
+            <div>
+              <span className="w-32 whitespace-nowrap text-light">
+                {getEstimatedReadingTime(post.body)} min read
+              </span>
+              <span className="w-32 whitespace-nowrap text-light"> . </span>
+              <span className="w-32 whitespace-nowrap text-light">
+                213,248 views
+              </span>
+            </div>
+          </div>
+
+          <Content value={post?.body} />
+        </article>
+      </main>
+    </>
   );
 };
 
@@ -94,7 +105,7 @@ export async function getStaticProps({ params }) {
     props: {
       post,
     },
-    revalidate: 10, // In seconds
+    revalidate: 1, // In seconds
   };
 }
 

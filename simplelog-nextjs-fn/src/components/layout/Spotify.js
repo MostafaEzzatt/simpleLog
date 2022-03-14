@@ -9,7 +9,7 @@ const Spotify = () => {
       let response = await request.json();
       setPlayingInfo(response);
     } catch (error) {
-      throw "Something went wrong while getting spotify info";
+      throw new Error("Something went wrong while getting spotify info");
     }
   };
   useEffect(() => {

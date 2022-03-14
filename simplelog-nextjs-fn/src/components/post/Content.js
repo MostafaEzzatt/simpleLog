@@ -17,7 +17,7 @@ const Content = ({ value }) => {
                   typeof child == "object" &&
                   child.props.markType == "code"
                 ) {
-                  return <code key={child.props.text}>{child.props.text}</code>;
+                  return <code key={child.key}>{child.props.text}</code>;
                 }
                 return child;
               })}
